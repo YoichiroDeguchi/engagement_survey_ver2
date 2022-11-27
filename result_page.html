@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>engagement survey</title>
+</head>
+
+<body>
+    <!-- 管理者用ページ_回答結果 -->
+    <h1>回答結果</h1>
+    <div class="admin_wrapper">
+        <h2>eNPSスコア</h2>
+        <div class="score_wrapper">
+            <p>スコア：<span id="GetDataQ1"></span></p>
+        </div>
+
+        <h2>スコアの推移</h2>
+        <div class="score_transition_wrapper">
+            <p>――</p>
+        </div>
+
+        <h2>総合満足度</h2>
+        <div class="genre_wrapper">
+            <p>労働時間：<span id="GetDataQ2"></span></p>
+            <p>報酬：<span id="GetDataQ3"></span></p>
+            <p>仕事のやりがい：<span id="GetDataQ4"></span></p>
+            <p>自己成長：<span id="GetDataQ5"></span></p>
+            <p>人間関係：<span id="GetDataQ6"></span></p>
+            <p>理念への共感：<span id="GetDataQ7"></span></p>
+            <canvas id="chart1"></canvas>
+        </div>
+
+        <h2>強みと弱み</h2>
+        <div class="strength_weakness_wrapper">
+            <p>――</p>
+        </div>
+
+        <h2>属性ごとの満足度</h2>
+        <select id="optionBox" onchange="change();">
+            <option value="0">選択してください</option>
+            <option value="optionFemale">女性</option>
+            <option value="optionMale">男性</option>
+            <option value="option20">20代</option>
+            <option value="option30">30代</option>
+            <option value="option40">40代</option>
+            <option value="option50">50代</option>
+            <option value="optionMatoba">的場店</option>
+            <option value="optionJiromaru">次郎丸店</option>
+            <option value="optionNurse">看護師</option>
+            <option value="optionTherapist">セラピスト</option>
+            <option value="optionClerk">事務</option>
+            <option value="optionLength1">1年未満</option>
+            <option value="optionLength12">1-2年</option>
+            <option value="optionLength23">2-3年</option>
+            <option value="optionLength3">3年以上</option>
+        </select>
+
+        <div class="gender_wrapper">
+            <div class="gender_female_box" id="genderFemaleBox" style="display:none">
+                <h4>女性</h4>
+                <p>労働時間：<span id="genderFemaleDataQ2"></span></p>
+                <p>報酬：<span id="genderFemaleDataQ3"></span></p>
+                <p>仕事のやりがい：<span id="genderFemaleDataQ4"></span></p>
+                <p>自己成長：<span id="genderFemaleDataQ5"></span></p>
+                <p>人間関係：<span id="genderFemaleDataQ6"></span></p>
+                <p>理念への共感：<span id="genderFemaleDataQ7"></span></p>
+                <canvas id="chartFemale"></canvas>
+            </div>
+            <div class="gender_male_box" id="genderMaleBox" style="display:none">
+                <h4>男性</h4>
+                <p>労働時間：<span id="genderMaleDataQ2"></span></p>
+                <p>報酬：<span id="genderMaleDataQ3"></span></p>
+                <p>仕事のやりがい：<span id="genderMaleDataQ4"></span></p>
+                <p>自己成長：<span id="genderMaleDataQ5"></span></p>
+                <p>人間関係：<span id="genderMaleDataQ6"></span></p>
+                <p>理念への共感：<span id="genderMaleDataQ7"></span></p>
+                <canvas id="chartMale"></canvas>
+            </div>
+        </div>
+
+        <div class="age_wrapper">
+            <div class="age_20_box" id="age20Box" style="display:none">
+                <h4>20代</h4>
+                <p>労働時間：<span id="age20DataQ2"></span></p>
+                <p>報酬：<span id="age20DataQ3"></span></p>
+                <p>仕事のやりがい：<span id="age20DataQ4"></span></p>
+                <p>自己成長：<span id="age20DataQ5"></span></p>
+                <p>人間関係：<span id="age20DataQ6"></span></p>
+                <p>理念への共感：<span id="age20DataQ7"></span></p>
+                <canvas id="chart20"></canvas>
+            </div>
+            <div class="age_30_box" id="age30Box" style="display:none">
+                <h4>30代</h4>
+                <p>労働時間：<span id="age30DataQ2"></span></p>
+                <p>報酬：<span id="age30DataQ3"></span></p>
+                <p>仕事のやりがい：<span id="age30DataQ4"></span></p>
+                <p>自己成長：<span id="age30DataQ5"></span></p>
+                <p>人間関係：<span id="age30DataQ6"></span></p>
+                <p>理念への共感：<span id="age30DataQ7"></span></p>
+                <canvas id="chart30"></canvas>
+            </div>
+            <div class="age_40_box" id="age40Box" style="display:none">
+                <h4>40代</h4>
+                <p>労働時間：<span id="age40DataQ2"></span></p>
+                <p>報酬：<span id="age40DataQ3"></span></p>
+                <p>仕事のやりがい：<span id="age40DataQ4"></span></p>
+                <p>自己成長：<span id="age40DataQ5"></span></p>
+                <p>人間関係：<span id="age40DataQ6"></span></p>
+                <p>理念への共感：<span id="age40DataQ7"></span></p>
+                <canvas id="chart40"></canvas>
+            </div>
+            <div class="age_50_box" id="age50Box" style="display:none">
+                <h4>50代</h4>
+                <p>労働時間：<span id="age50DataQ2"></span></p>
+                <p>報酬：<span id="age50DataQ3"></span></p>
+                <p>仕事のやりがい：<span id="age50DataQ4"></span></p>
+                <p>自己成長：<span id="age50DataQ5"></span></p>
+                <p>人間関係：<span id="age50DataQ6"></span></p>
+                <p>理念への共感：<span id="age50DataQ7"></span></p>
+                <canvas id="chart50"></canvas>
+            </div>
+        </div>
+
+        <div class="affiliation_wrapper">
+            <div class="affiliation_matoba_box" id="affiliationMatobaBox" style="display:none">
+                <h4>的場店</h4>
+                <p>労働時間：<span id="affiliationMatobaDataQ2"></span></p>
+                <p>報酬：<span id="affiliationMatobaDataQ3"></span></p>
+                <p>仕事のやりがい：<span id="affiliationMatobaDataQ4"></span></p>
+                <p>自己成長：<span id="affiliationMatobaDataQ5"></span></p>
+                <p>人間関係：<span id="affiliationMatobaDataQ6"></span></p>
+                <p>理念への共感：<span id="affiliationMatobaDataQ7"></span></p>
+                <canvas id="chartMatoba"></canvas>
+            </div>
+            <div class="affiliation_jiromaru_box" id="affiliationJiromaruBox" style="display:none">
+                <h4>次郎丸店</h4>
+                <p>労働時間：<span id="affiliationJiromaruDataQ2"></span></p>
+                <p>報酬：<span id="affiliationJiromaruDataQ3"></span></p>
+                <p>仕事のやりがい：<span id="affiliationJiromaruDataQ4"></span></p>
+                <p>自己成長：<span id="affiliationJiromaruDataQ5"></span></p>
+                <p>人間関係：<span id="affiliationJiromaruDataQ6"></span></p>
+                <p>理念への共感：<span id="affiliationJiromaruDataQ7"></span></p>
+                <canvas id="chartJiromaru"></canvas>
+            </div>
+        </div>
+
+        <div class="occupation_wrapper">
+            <div class="occupation_nurse_box" id="occupationNurseBox" style="display:none">
+                <h4>看護師</h4>
+                <p>労働時間：<span id="occupationNurseDataQ2"></span></p>
+                <p>報酬：<span id="occupationNurseDataQ3"></span></p>
+                <p>仕事のやりがい：<span id="occupationNurseDataQ4"></span></p>
+                <p>自己成長：<span id="occupationNurseDataQ5"></span></p>
+                <p>人間関係：<span id="occupationNurseDataQ6"></span></p>
+                <p>理念への共感：<span id="occupationNurseDataQ7"></span></p>
+                <canvas id="chartNurse"></canvas>
+            </div>
+            <div class="occupation_therapist_box" id="occupationTherapistBox" style="display:none">
+                <h4>セラピスト</h4>
+                <p>労働時間：<span id="occupationTherapistDataQ2"></span></p>
+                <p>報酬：<span id="occupationTherapistDataQ3"></span></p>
+                <p>仕事のやりがい：<span id="occupationTherapistDataQ4"></span></p>
+                <p>自己成長：<span id="occupationTherapistDataQ5"></span></p>
+                <p>人間関係：<span id="occupationTherapistDataQ6"></span></p>
+                <p>理念への共感：<span id="occupationTherapistDataQ7"></span></p>
+                <canvas id="chartTherapist"></canvas>
+            </div>
+            <div class="occupation_clerk_box" id="occupationClerkBox" style="display:none">
+                <h4>事務</h4>
+                <p>労働時間：<span id="occupationClerkDataQ2"></span></p>
+                <p>報酬：<span id="occupationClerkDataQ3"></span></p>
+                <p>仕事のやりがい：<span id="occupationClerkDataQ4"></span></p>
+                <p>自己成長：<span id="occupationClerkDataQ5"></span></p>
+                <p>人間関係：<span id="occupationClerkDataQ6"></span></p>
+                <p>理念への共感：<span id="occupationClerkDataQ7"></span></p>
+                <canvas id="chartClerk"></canvas>
+            </div>
+        </div>
+
+        <div class="length_wrapper">
+            <div class="length_1_box" id="length1Box" style="display:none">
+                <h4>1年未満</h4>
+                <p>労働時間：<span id="length1DataQ2"></span></p>
+                <p>報酬：<span id="length1DataQ3"></span></p>
+                <p>仕事のやりがい：<span id="length1DataQ4"></span></p>
+                <p>自己成長：<span id="length1DataQ5"></span></p>
+                <p>人間関係：<span id="length1DataQ6"></span></p>
+                <p>理念への共感：<span id="length1DataQ7"></span></p>
+                <canvas id="chartLength1"></canvas>
+            </div>
+            <div class="length_12_box" id="length12Box" style="display:none">
+                <h4>1-2年</h4>
+                <p>労働時間：<span id="length12DataQ2"></span></p>
+                <p>報酬：<span id="length12DataQ3"></span></p>
+                <p>仕事のやりがい：<span id="length12DataQ4"></span></p>
+                <p>自己成長：<span id="length12DataQ5"></span></p>
+                <p>人間関係：<span id="length12DataQ6"></span></p>
+                <p>理念への共感：<span id="length12DataQ7"></span></p>
+                <canvas id="chartLength12"></canvas>
+            </div>
+            <div class="length_23_box" id="length23Box" style="display:none">
+                <h4>2-3年</h4>
+                <p>労働時間：<span id="length23DataQ2"></span></p>
+                <p>報酬：<span id="length23DataQ3"></span></p>
+                <p>仕事のやりがい：<span id="length23DataQ4"></span></p>
+                <p>自己成長：<span id="length23DataQ5"></span></p>
+                <p>人間関係：<span id="length23DataQ6"></span></p>
+                <p>理念への共感：<span id="length23DataQ7"></span></p>
+                <canvas id="chartLength23"></canvas>
+            </div>
+            <div class="length_3_box" id="length3Box" style="display:none">
+                <h4>3年以上</h4>
+                <p>労働時間：<span id="length3DataQ2"></span></p>
+                <p>報酬：<span id="length3DataQ3"></span></p>
+                <p>仕事のやりがい：<span id="length3DataQ4"></span></p>
+                <p>自己成長：<span id="length3DataQ5"></span></p>
+                <p>人間関係：<span id="length3DataQ6"></span></p>
+                <p>理念への共感：<span id="length3DataQ7"></span></p>
+                <canvas id="chartLength3"></canvas>
+            </div>
+        </div>
+
+    </div>
+    <a href="result_top.html" class="result_top_btn result_top_btn2">TOPへ戻る</a>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="chart.js"></script>
+
+
+</body>
+
+</html>
