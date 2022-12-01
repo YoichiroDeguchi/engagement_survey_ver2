@@ -17,7 +17,8 @@ https://yoichirodeguchi.github.io/engagement_survey_ver2/
 
 ## 苦戦した点
   - ローカルストレージからFirebaseへの移行に大苦戦した（ここでほぼ時間使った...）
-  - 特にFirebaseからのデータの取り出しに苦戦した。
+  - 特にFirebaseからのデータの取り出しに苦戦した
+  - 回り道のコードが多いが動くの優先でとにかくコード量は書いた（約3,000行）
 
 ## 参考にした web サイトなど
   - グラフ：https://www.chartjs.org/docs/latest/getting-started/
