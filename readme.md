@@ -1,10 +1,10 @@
 # engagement survey
 
 ## DEMO
-
+https://yoichirodeguchi.github.io/engagement_survey_ver2/
 
 ## 紹介と使い方
-  - 従業員の満足度調査を行うツール
+  - チームメンバーの満足度調査を行うツール
   - 質問ページ（従業員用）と結果ページ（管理者用）の構成
   - チームメンバーに質問ページのリンクを送り満足度調査の回答をしてもらう→結果ページで集計結果を確認し、今のチームの状態を可視化することができる。
 
@@ -17,7 +17,7 @@
 
 ## 苦戦した点
   - ローカルストレージからFirebaseへの移行に大苦戦した（ここでほぼ時間使った...）
-  - Firebaseからのデータの取り出し
+  - 特にFirebaseからのデータの取り出しに苦戦した。
 
 ## 参考にした web サイトなど
   - グラフ：https://www.chartjs.org/docs/latest/getting-started/
