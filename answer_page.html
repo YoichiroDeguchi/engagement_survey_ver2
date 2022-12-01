@@ -34,6 +34,12 @@
         <div class="attribute_title">
             <h2 class="text-center">はじめにあなたの属性についてお伺いします。</h2>
         </div>
+        <p>回答月</p>
+        <select name="year" id="year">
+            <option value="2022年4月">2022年4月</option>
+            <option value="2022年7月">2022年7月</option>
+            <option value="2022年10月">2022年10月</option>
+        </select>
         <p>性別</p>
         <input type="radio" name="gender" value="男性" required>男性
         <input type="radio" name="gender" value="女性">女性
@@ -163,12 +169,77 @@
         <h2 class="text-center">ご協力ありがとうございました！</h2>
         <p>調査はこれで終了です。今回の結果をもとに、継続的に改善案を策定していきます。<br>
             ブラウザを閉じて終了してください。</p>
-        <a href="index.html" class="answer_top_btn answer_top_btn2">TOPへ戻る</a>
+        <a href="answer_top.html" class="answer_top_btn answer_top_btn2">TOPへ戻る</a>
     </div>
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
+
+
+
+
+
+    <!----------------------------------------- js ----------------------------------------->
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        import {
+            getFirestore,
+            collection,
+            addDoc,
+            serverTimestamp,
+            onSnapshot,
+            query,
+            orderBy,
+        } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAxre5hPbCT609sBRx7ve8aTxjmTWocYrY",
+            authDomain: "engagement-survey-ver2.firebaseapp.com",
+            projectId: "engagement-survey-ver2",
+            storageBucket: "engagement-survey-ver2.appspot.com",
+            messagingSenderId: "1030006356287",
+            appId: "1:1030006356287:web:c52937f5a93c336485fb8a"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+
+        // -----------------firestoreへのデータ送信-----------------
+
+        //firestoreへデータの送信
+        $("#end_btn").on("click", function () {
+
+            // データ送信の処理
+            const allData = {
+                year: $('[name=year]').val(),
+                gender: $('input:radio[name="gender"]:checked').val(),
+                age: $('input:radio[name="age"]:checked').val(),
+                affiliation: $('input:radio[name="affiliation"]:checked').val(),
+                occupation: $('input:radio[name="occupation"]:checked').val(),
+                length: $('input:radio[name="length"]:checked').val(),
+                q1: Number($('input:radio[name="q1"]:checked').val()),
+                q2: Number($('input:radio[name="q2"]:checked').val()),
+                q3: Number($('input:radio[name="q3"]:checked').val()),
+                q4: Number($('input:radio[name="q4"]:checked').val()),
+                q5: Number($('input:radio[name="q5"]:checked').val()),
+                q6: Number($('input:radio[name="q6"]:checked').val()),
+                q7: Number($('input:radio[name="q7"]:checked').val()),
+            };
+
+            console.log(allData);
+            addDoc(collection(db, "allData"), allData);
+        });
+
+    </script>
 
 </body>
 
