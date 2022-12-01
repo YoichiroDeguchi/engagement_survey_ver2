@@ -19,7 +19,7 @@ https://yoichirodeguchi.github.io/engagement_survey_ver2/
   - ローカルストレージからFirebaseへの移行に大苦戦した（ここでほぼ時間使った...）
   - 特にFirebaseからのデータの取り出しに苦戦した
   - 回り道のコードが多いが動くの優先でとにかくコード量は書いた（約3,000行）
-  - 挑戦して実装出来なかったこと：①ログイン機能、②htmlファイルではなくjsファイルでFirebaseのコードを書くこと
+  - 挑戦して出来なかったこと：①ログイン機能、②htmlファイルではなくjsファイルでFirebaseのコードを書くこと
 
 ## 参考にした web サイトなど
   - グラフ：https://www.chartjs.org/docs/latest/getting-started/
