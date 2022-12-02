@@ -59,6 +59,7 @@ button.to_employee {
 a.to_employee2 {
     color: #fff;
     background-color: #eb6100;
+    margin: 0 10px;
 }
 
 .to_employee2:hover,
@@ -100,6 +101,7 @@ button.to_admin {
 a.to_admin2 {
     color: #fff;
     background-color: #eb6100;
+    margin: 0 10px;
 }
 
 .to_admin2:hover,
